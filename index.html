@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Simulator System for Hijack</title>
+    <meta name="description" content="Simulator system for counter hijack and sky marshalling operations that provides realistic and
+    effective training for counter hijack and sky marshalling operations."
+    />
+    <link rel="canonical" href="https://www.geo-fs.com/" />
+    <script>
+        window.geofs = window.geofs || {};
+    </script>
+    <script>
+        geofs.version = '3.65';
+    </script>
+    <script>
+        geofs.forcePreferenceResetOnVersionChange = '';
+    </script>
+    <script>
+        geofs.multiplayerHost = 'https://mps.geo-fs.com';
+    </script>
+    <script>
+        geofs.MPSMinUpdateDelay = 500;
+    </script>
+    <script>
+        geofs.domain = 'www.geo-fs.com';
+    </script>
+    <script>
+        geofs.userRoles = {
+            "anonymous": 0,
+            "authenticated": 1,
+            "student": 2,
+            "instructor": 3,
+            "editor": 11,
+            "licenseadmin": 40,
+            "subscribed": 80,
+            "admin": 100
+        };
+    </script>
+    <script>
+        geofs.masterDomain = 'geo-fs.com';
+    </script>
+    <script>
+        geofs.scheme = 'https://';
+    </script>
+    <script>
+        geofs.url = 'https://www.geo-fs.com';
+    </script>
+    <script>
+        geofs.localUrl = 'https://www.geo-fs.com/';
+    </script>
+    <script>
+        geofs.googleAppId = '208044912282-4g0gk5oum6gecc2d7ll1ensv921l12us.apps.googleusercontent.com';
+    </script>
+    <script>
+        geofs.facebookAppId = '404853203195387';
+    </script>
+    <script>
+        geofs.dataServer = 'https://data.geo-fs.com/';
+    </script>
+    <script>
+        geofs.mapXYZ = 'https://data.geo-fs.com/osm/{z}/{x}/{y}.png';
+    </script>
+    <script>
+        geofs.blackMarbleServer = '';
+    </script>
+    <script>
+        geofs.osmTileProvider = 'https://data.geo-fs.com/osm/{z}/{x}/{y}.png';
+    </script>
+    <script>
+        geofs.osmServer = 'https://data.geo-fs.com/osm/';
+    </script>
+    <script>
+        geofs.landuseServer = 'https://data.geo-fs.com/landuse/';
+    </script>
+    <script>
+        geofs.buildingServer = 'https://data.geo-fs.com/buildings/';
+    </script>
+    <script>
+        geofs.treeServer = 'https://data.geo-fs.com/trees/';
+    </script>
+    <script>
+        geofs.treeServerExtension = '.glbz';
+    </script>
+    <script>
+        geofs.objectServer = 'https://data.geo-fs.com/landmarks/';
+    </script>
+    <script>
+        geofs.weatherServer = 'https://weather.geo-fs.com/';
+    </script>
+    <script>
+        geofs.ionkey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiMWQ1NWRlMy1lZmM3LTRlNDYtYWQyOS1hZDlmZmMyZGRiZWUiLCJpZCI6NzYsInNjb3BlcyI6WyJhc3IiXSwiYXNzZXRzIjpbMV0sImlhdCI6MTU1MzUwOTAwMX0.AlJJNDP3yr3dOLmcMnuJdsODGrVoSpm9lvtcXuGM99M';
+    </script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <script src="/js/loader.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script data-deferredsrc="https://www.googletagmanager.com/gtag/js?id=UA-2996341-8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-2996341-8');
+    </script>
+    <!-- includes -->
+    <link rel="stylesheet" type="text/css" href="/css/commonCSS.css?kc=1681982193" media="screen" />
+    <script data-deferredsrc="/js/commonJS.js?kc=1652449784-3"></script>
+</head>
+
+<body class="">
+    <div class="geofs mdl-layout--fixed-header mdl-layout--no-desktop-drawer-button">
+
+        <header class="geofs-header mdl-layout__header">
+            <div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button geofs-notBigScreen"><i class="material-icons"></i></div>
+            <div class="mdl-layout__header-row">
+                <a href="/">
+				    <img class="mdl-layout-title geofs-tooltip" style="margin-right: 20px; outline: none;" src="/images/geofs.png" alt="GeoFS Logo - Click to return to Home Page" title="Home Page"/>
+                </a>
+
+                <div class="mdl-layout-spacer"></div>
+
+                <!-- FLY! Button -->
+                <div class="mdl-navigation">
+                    <a class="mdl-button mdl-js-button mdl-button--raised geofs-mediumScreenOnly mdl-js-ripple-effect" href="/pages/instructions.php">Instructions</a>
+
+                    <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent geofs-fly-button" href="./sample.txt" download><i class="material-icons">&#xE905;</i>Simulate</a>
+
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect geofs-bigScreenOnly" style="color: white; width: 130px; padding-left: 25px;" id="geofs-more-menu">
+                        More <i class="material-icons">&#xE5D4;</i>
+                    </button>
+
+                    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="geofs-more-menu">
+<!-- 
+                        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" style="display: block; margin: 5px;" title="Learn about GeoFS HD Aerial Imagery subscriptions" href="/pages/hd.php">GeoFS HD</a>
+
+                        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" style="display: block; margin: 5px; background-color: #26434b;" title="GeoFS PRO for Schools & Businesses" href="https://pro.geo-fs.com">GEOFS PRO</a>
+
+                        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" style="display: block; margin: 5px;" title="Learn more about GeoFS apps for mobile" href="/pages/mobile.php">Mobile Apps</a> -->
+
+                        <li class="mdl-menu__item"><a href="/pages/map.php" target="_blank">Live Map</a></li>
+
+                        <!-- <li class="mdl-menu__item"><a href="/pages/media.php">Media & Branding</a></li> -->
+                        <li class="mdl-menu__item"><a href="/pages/testimonials.php">Testimonials</a></li>
+                        <li class="mdl-menu__item"><a href="/pages/about.php">About</a></li>
+                        <li class="mdl-menu__item"><a href="/pages/credits.php">Credits</a></li>
+                        <li class="mdl-menu__item"><a href="https://blog.geo-fs.com" target="_blank">Blog</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="mdl-layout-spacer"></div>
+
+                <div class="geofs-mediumScreenOnly">
+                    <div class="geofs-auth geofs-htmlView">
+                        <script>
+                            geofs.userRecord = {
+                                "sessionId": "7hr4ud6p21fb3ohuhteeri0dhl",
+                                "role": 0,
+                                "password": "***"
+                            };
+                        </script>
+                        <script>
+                            geofs.userRecord.muteList = [];
+                        </script>
+                        <script>
+                            geofs.userRecord.muteListMap = {
+                                '': 1
+                            };
+                        </script>
+
+                        <div class="geofs-authForm">
+                            <img data-deferredsrc="/images/facebook-login.png?v=3.6" class="geofs-facebook-login" alt="Facebook login button" />
+                            <!--<div class="fb-login-button" data-size="large" data-show-faces="false" data-auto-logout-link="false" onlogin="loginFacebook" data-scope="public_profile, email"></div>-->
+                            <!--<div class="fb-login-button" data-width="90" data-size="medium" data-button-type="" data-layout="" data-auto-logout-link="false" data-use-continue-as="false"></div>-->
+
+                            <!--<img data-deferredsrc="/images/google-login.png" class="geofs-google-login" alt="Google login button" />-->
+                            <div class="geofs-google-signin google-signin" id="google-signin1"></div>
+                        </div>
+                        <a href="/pages/instructions.php" target="_blank" class="geofs-help">
+        <i class="material-icons">help_outline</i>
+    </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Drawer -->
+        <div class="mdl-layout__drawer">
+            <nav class="mdl-navigation">
+                <!-- <div class="geofs-auth geofs-htmlView"> -->
+
+                    <!-- <div class="geofs-authForm">
+                        <img data-deferredsrc="/images/facebook-login.png?v=3.6" class="geofs-facebook-login" alt="Facebook login button" /> -->
+                        <!--<div class="fb-login-button" data-size="large" data-show-faces="false" data-auto-logout-link="false" onlogin="loginFacebook" data-scope="public_profile, email"></div>-->
+                        <!--<div class="fb-login-button" data-width="90" data-size="medium" data-button-type="" data-layout="" data-auto-logout-link="false" data-use-continue-as="false"></div>-->
+
+                        <!--<img data-deferredsrc="/images/google-login.png" class="geofs-google-login" alt="Google login button" />-->
+                        <!-- <div class="geofs-google-signin google-signin" id="google-signin2"></div>
+                    </div> -->
+                    <!-- <a href="/pages/instructions.php" target="_blank" class="geofs-help">
+        <i class="material-icons">help_outline</i>
+    </a>
+                </div> -->
+                <hr/>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" style="color: white;" title="Learn about GeoFS HD Aerial Imagery subscriptions" href="/pages/hd.php">GeoFS HD</a>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" style="background-color: #47737f;" title="GeoFS licences for Schools" href="/pages/schools.php">Schools</a>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" style="background-color: #26434b;" title="GeoFS licences for Businesses" href="/pages/businesses.php">Businesses</a>
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect" title="Learn more about GeoFS apps for mobile" href="/pages/mobile.php">Mobile Apps</a>
+                <a class="mdl-navigation__link" href="/pages/instructions.php">Instructions</a>
+                <a class="mdl-navigation__link" href="/pages/map.php" target="_blank">Live Map</a>
+                <a class="mdl-navigation__link" href="/pages/testimonials.php">Testimonials</a>
+                <!-- <a class="mdl-navigation__link" href="/pages/media.php">Media & Branding</a> -->
+                <a class="mdl-navigation__link" href="/pages/about.php">About</a>
+                <!-- <a class="mdl-navigation__link" href="/pages/credits.php">Credits</a> -->
+                <a class="mdl-navigation__link" href="https://blog.geo-fs.com" target="_blank">Blog</a>
+            </nav>
+        </div>
+
+        <main class="">
+            <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "VideoGame",
+                    "name": [{
+                        "@language": "en",
+                        "@value": "GeoFS"
+                    }],
+                    "description": "Online Flight Simulator with worldwide satellite images.",
+                    "url": "https://www.geo-fs.com",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/5/5f/GeoFS_-_The_Free_Flight_Simulator_-_poster.jpg",
+                    "screenshot": "https://upload.wikimedia.org/wikipedia/commons/5/53/GeoFS_-_Pitts_S1_Special_over_South_Africa.jpg",
+                    "publisher": "GeoFS",
+                    "genre": ["Flight Simulation"],
+                    "applicationCategory": ["Game, Simulator"],
+                    "sameAs": [
+                        "https://en.wikipedia.org/wiki/GeoFS",
+                        "https://www.youtube.com/c/GeoFS"
+                    ],
+                    "gamePlatform": ["PC", "iOS", "Android"],
+                    "operatingSystem": ["Window", "OSX", "Linux", "iOS", "Android"]
+                }
+            </script>
+            <script>
+                window.executeOnEventDone('afterDeferredload', function() {
+                    document.body.classList.remove('geofs-subscribed');
+                });
+            </script>
+
+            <carousel class="geofs-photo-frame geofs-header-frame" style="padding: 0px;" period="4000">
+                <div class="photo-holder visible" style="background-image: url(/images/photos/header1.jpg?v=35);"></div>
+                <source src="/images/photos/header1.jpg?v=35">
+
+                <source src="/images/photos/header7.jpg?v=35">
+                <source src="/images/photos/header8.jpg?v=35">
+                <source src="/images/photos/header9.jpg?v=35">
+                <source src="/images/photos/header10.jpg?v=35">
+                <source src="/images/photos/header11.jpg?v=35">
+                <source src="/images/photos/header12.jpg?v=35">
+
+                <source src="/images/photos/header2.jpg?v=35">
+                <source src="/images/photos/header3.jpg?v=35">
+                <source src="/images/photos/header4.jpg?v=35">
+                <source src="/images/photos/header5.jpg?v=35">
+                <source src="/images/photos/header6.jpg?v=35">
+
+                <div class="geofs-header-frame-content">
+
+                    <div class="geofs-info-frame" style="visibility: hidden; max-width: 33%;"></div>
+                    <!--
+                    <div class="geofs-info-frame" style="color: white; text-align: center; width: 200px; max-width: 33%;">
+                        3.3 is now the default version.
+                        <br/>But for the time being,
+                        <br/>you can still run the old 2.9 version from here
+                        <br/><br/>
+                        <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect geofs-fly-beta--button" style="background-color: #7e64a5 !important;" title="Legacy GeoFS 2.9" href="https://legacy.geo-fs.com/geofs.php"><i class="material-icons">&#xE905;</i> Fly Legacy 2.9</a>
+                    </div>
+-->
+                    <h1 class="geofs-photo-title">Simulator System Software</h1>
+                    <h2 class="geofs-photo-text">Counter Hijack - Sky Marshalling Operation</h2>
+                    <div class="geofs-header-frame-buttons">
+
+                        <script>
+                            window.executeOnEventDone('deferredload', function() {
+                                $(document).on('loginchange', function() {
+                                    $('.geofs-subscriptionDaysLeft').text(parseInt(geofs.userRecord.subscriptionDaysLeft) + 1);
+                                });
+                            });
+                        </script>
+
+                        <!-- <span class="geofs-onlyForSubscribers geofs-subscription-message">You have <b class="geofs-subscriptionDaysLeft">1</b> day(s) left on your HD subscription</span>
+                        <a class="geofs-onlyForNonSubscribers mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect geofs-resolution-button" href="/geofs.php">
+                            free with standard imagery
+                        </a>
+                        <a class="geofs-onlyForNonSubscribers mdl-button mdl-js-button mdl-button--raised mdl-button--primary mdl-js-ripple-effect geofs-resolution-button" href="/pages/hd.php">
+                            HD imagery: €9.99 per year
+                        </a> -->
+                    </div>
+                </div>
+            </carousel>
+
+            <div class="mdl-grid" style="padding: 0px;">
+                <!-- <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop geofs-adsense-container" style="text-align: center;">
+                    <div class="geofs-adsBlockedMessage" style="text-align: center;">
+
+                        <a href="/pages/hd.php" target="_top" style="display: inline-block; text-align: center; width: 100%; height: 100%;">
+<img data-deferredsrc="/images/ba/hd_banner.jpg" style="max-width: 100%;" /></a></div>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" obfuscation="none"></script>
+                    <ins class="adsbygoogle responsive-adsense" style="display:block" data-ad-client="ca-pub-1808592532341984" data-ad-slot="1035588939" data-ad-format="auto"></ins>
+                    <script obfuscation="none">
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div> -->
+
+                <!-- <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop mdl-cell--1-offset-tablet">
+                    <p class="geofs-text" style="margin-top: 20px;">
+                        <b>A simulator system for counter hijack and sky marshalling operations that provides realistic and
+                        effective training for counter hijack and sky marshalling operations. This simulation
+                        technology can further enhance the specific needs of the training program.</b>
+                    </p>
+                </div> -->
+
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop mdl-cell--1-offset-tablet"style="display: flex; align-items: center; height:500px; ">
+                    <img src="./images/Project A (1).png" alt="Image Description" style="flex: 1;">
+                    <div style="flex: 1; padding-left:  60px;">
+                        <!-- <h2>Text Heading</h2> -->
+                        <p style="font-size: large; font-weight: bold;">Our Counter Hijack and Sky Marshalling Simulator is designed to prepare you for the challenges of safeguarding the skies. By immersing yourself in realistic training scenarios and environments, you can develop the skills and confidence needed to respond effectively to critical incidents..</p>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col">
+                    <h1>FEATURES</h1>
+                </div>
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop">
+                        <ul class="geofs-text">
+                            <li><b>Scenario Customization:</b> Instructors can customize scenarios to match specific training objectives and challenges faced by their organizations. This flexibility ensures that the training remains relevant and up-to-date.</li><li><b>Day and Night Modes:</b> Customize your training experience by choosing between day and night scenarios. This feature allows trainees to practice in different lighting conditions, enhancing their adaptability to real-life situations.</li>
+                            <li><b>Realistic Aircraft Models:</b> Our simulator features a wide range of realistic aircraft models to ensure trainees are familiar with various types of commercial and private planes, helicopters, and other aircraft. This familiarity is crucial for effective decision-making during emergencies.</li>
+                            <li><b>Dynamic Environments:</b> Trainees will face diverse and dynamic environments, including different weather conditions (e.g., rain, fog, snow), airport layouts, and geographical locations. This variability ensures a well-rounded training experience.</li>
+                            <li><b>Multiplayer Mode:</b> Collaborate with fellow trainees in multiplayer mode to simulate coordinated responses to hijack and emergency situations. Teamwork and communication are essential in real-life scenarios, and our simulator reflects this reality.</li>
+                            <li><b>Day and Night Modes:</b> Customize your training experience by choosing between day and night scenarios. This feature allows trainees to practice in different lighting conditions, enhancing their adaptability to real-life situations.</li>
+                        </ul>
+                    </div>
+    
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <h1>Customize</h1>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--5-col mdl-cell--1-offset-desktop mdl-cell--1-offset-tablet">
+                    <ul class="mdl-list">
+                        <li class="mdl-list__item mdl-list__item--two-line">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">&#xE80B;</i>
+                                <span>Free 10 meter global satellite images</span>
+                            <span class="mdl-list__item-sub-title">
+                                    Aerial <a href="/pages/hd.php">HD imagery on subscription.</a>
+                                </span>
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">&#xE7EF;</i>
+                                Massively multiplayer
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">&#xE55B;</i>
+                                Navigation charts with 40,000 referenced runways
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">cell_tower</i>
+                                Radio Navigation (GPS, ADF, VOR, NDB, DME)
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">&#xE905;</i>
+                                ADS-B (real-life) commercial traffic in real-time
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">&#xE1B1;</i>
+                                Runs on Windows, Mac, Linux, Mobile (iOS, Android)
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">&#xE30F;</i>
+                                Joystick support
+                            </span>
+                        </li>
+                        <li class="mdl-list__item">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">&#xE195;</i>
+                                30 available aircraft (+ community contributed)
+                            </span>
+                        </li>
+                        <li class="mdl-list__item mdl-list__item--two-line">
+                            <span class="mdl-list__item-primary-content">
+                                <i class="material-icons mdl-list__item-icon">&#xE3DD;</i>
+                                Configurable or real-time weather (METAR)
+                                <span class="mdl-list__item-sub-title">
+                                    wind, turbulences, thermals, ridge lift, clouds, precipitations, fog
+                                </span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mdl-cell mdl-cell--5-col mdl-cell--1-offset-tablet geofs-aircraft-grid">
+
+                    <a href="/geofs.php?aircraft=1" title="Piper Cub" rel="nofollow"><img style="width: 100px; height: 57px" alt="Piper Cub" src="/images/planes/cub.png"></a><a href="/geofs.php?aircraft=2" title="Cessna 172" rel="nofollow"><img style="width: 100px; height: 57px" alt="Cessna 172" src="/images/planes/c172.png"></a>
+                    <a
+                        href="/geofs.php?aircraft=3" title="Alphajet PAF" rel="nofollow"><img style="width: 100px; height: 57px" alt="Alphajet PAF" src="/images/planes/alphajet.png"></a><a href="/geofs.php?aircraft=4" title="Boeing 737-700" rel="nofollow"><img style="width: 100px; height: 57px" alt="Boeing 737-700" src="/images/planes/737-700.png"></a>
+                        <a
+                            href="/geofs.php?aircraft=5" title="Embraer Phenom 100" rel="nofollow"><img style="width: 100px; height: 57px" alt="Embraer Phenom 100" src="/images/planes/phenom.png"></a><a href="/geofs.php?aircraft=6" title="de Havilland DHC6 Twin Otter" rel="nofollow"><img style="width: 100px; height: 57px" alt="de Havilland DHC6 Twin Otter" src="/images/planes/dhc6.png"></a>
+                            <a
+                                href="/geofs.php?aircraft=7" title=" F-16 Fighting Falcon" rel="nofollow"><img style="width: 100px; height: 57px" alt=" F-16 Fighting Falcon" src="/images/planes/f16.png"></a><a href="/geofs.php?aircraft=8" title="Pitts S-1 Special" rel="nofollow"><img style="width: 100px; height: 57px" alt="Pitts S-1 Special" src="/images/planes/pitts.png"></a>
+                                <a
+                                    href="/geofs.php?aircraft=9" title="Eurocopter EC135" rel="nofollow"><img style="width: 100px; height: 57px" alt="Eurocopter EC135" src="/images/planes/ec135.png"></a><a href="/geofs.php?aircraft=10" title="Airbus A380" rel="nofollow"><img style="width: 100px; height: 57px" alt="Airbus A380" src="/images/planes/a380.png"></a>
+                                    <a
+                                        href="/geofs.php?aircraft=11" title="Alisport Silent 2 Electro" rel="nofollow"><img style="width: 100px; height: 57px" alt="Alisport Silent 2 Electro" src="/images/planes/silent2.png"></a><a href="/geofs.php?aircraft=12" title="Pilatus PC-7 Mk-I" rel="nofollow"><img style="width: 100px; height: 57px" alt="Pilatus PC-7 Mk-I" src="/images/planes/pilatus.png"></a>
+                                        <a
+                                            href="/geofs.php?aircraft=13" title="de Havilland Canada DHC-2 Beaver" rel="nofollow"><img style="width: 100px; height: 57px" alt="de Havilland Canada DHC-2 Beaver" src="/images/planes/dhc2.png"></a>
+                                            <!--<a href="/geofs.php?aircraft=14" title="Colomban MC-15 Cri-cri" rel="nofollow"><img style="width: 100px; height: 57px" alt="Colomban MC-15 Cri-cri" src="/images/planes/cricri.png"></a>-->
+                                            <a href="/geofs.php?aircraft=15" title="Lockheed P-38 Lightning F-5B" rel="nofollow"><img style="width: 100px; height: 57px" alt="Lockheed P-38 Lightning F-5B" src="/images/planes/p38.png"></a><a href="/geofs.php?aircraft=16"
+                                                title="Douglas DC-3" rel="nofollow"><img style="width: 100px; height: 57px" alt="Douglas DC-3" src="/images/planes/dc3.png"></a><a href="/geofs.php?aircraft=17" title="McDonnell Douglas MD-11" rel="nofollow"><img style="width: 100px; height: 57px" alt="McDonnell Douglas MD-11" src="/images/planes/md11.png"></a>
+                                            <a
+                                                href="/geofs.php?aircraft=18" title="Sukhoi Su-35" rel="nofollow"><img style="width: 100px; height: 57px" alt="Sukhoi Su-35" src="/images/planes/su35.png"></a><a href="/geofs.php?aircraft=20" title="Concorde" rel="nofollow"><img style="width: 100px; height: 57px" alt="Concorde" src="/images/planes/concorde.png"></a>
+                                                <a
+                                                    href="/geofs.php?aircraft=21" title="Zlin Z-50" rel="nofollow"><img style="width: 100px; height: 57px" alt="Zlin Z-50" src="/images/planes/zlin.png"></a><a href="/geofs.php?aircraft=22" title="Cessna 152" rel="nofollow"><img style="width: 100px; height: 57px" alt="Cessna 152" src="/images/planes/c152.png"></a>
+                                                    <a
+                                                        href="/geofs.php?aircraft=26" title="Antonov An-140" rel="nofollow"><img style="width: 100px; height: 57px" alt="Antonov An-140" src="/images/planes/an140.png"></a><a href="/geofs.php?aircraft=40" title="Evektor Sportstar" rel="nofollow"><img style="width: 100px; height: 57px" alt="Evektor Sportstar" src="/images/planes/sportstar.png"></a>
+                                                        <a
+                                                            href="/geofs.php?aircraft=41" title="szd-48-3 Jantar" rel="nofollow"><img style="width: 100px; height: 57px" alt="szd-48-3 Jantar" src="/images/planes/jantar.png"></a><a href="/geofs.php?aircraft=50" title="Paraglider" rel="nofollow"><img style="width: 100px; height: 57px" alt="Paraglider" src="/images/planes/paraglider.png"></a>
+                                                            <a
+                                                                href="/geofs.php?aircraft=51" title="Major Tom (hot air balloon)" rel="nofollow"><img style="width: 100px; height: 57px" alt="Major Tom (hot air balloon)" src="/images/planes/tom.png"></a><a href="/geofs.php?aircraft=52" title="Hughes 269a/TH-55 Osage" rel="nofollow"><img style="width: 100px; height: 57px" alt="Hughes 269a/TH-55 Osage" src="/images/planes/hughes.png"></a>
+                                                                <a
+                                                                    href="/geofs.php?aircraft=53" title="Goat Airchair" rel="nofollow"><img style="width: 100px; height: 57px" alt="Goat Airchair" src="/images/planes/goat.png"></a>
+
+                </div>
+            </div>
+
+            <div class="geofs-video-frame">
+                <video controls muted="true" data-deferredsrc="/videos/geofs3.mp4">
+                </video>
+            </div>
+
+            <!-- <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop">
+                    <ul class="geofs-text">
+                        <li>GeoFS is using <a href="https://cesiumjs.org/" target="_blank" rel="nofollow">Cesium</a>, a virtual globe framework (just like Google Earth) that provides worldwide <b>photo-realistic landscape</b>.</li>
+                        <li>GeoFS is available for free with global standard resolution (10 meters per pixel) satellite images.</li>
+                        <li>Or it can be enhanced with a HD subscription to fly over high resolution, photo-realistic landscape. (Microsoft Bing Maps aerial images).</li>
+                        <li>GeoFS HD is particularly suitable for VFR practice as it makes easy to spot landmarks, roads and other small details used for navigation.</li>
+                        <li>Take a look at the <a href="/pages/media.php">screenshot gallery</a> for more examples.</li>
+                        <li><a href="/pages/hd.php">Learn more about GeoFS HD here</a>. You can try GeoFS HD for free, for one day.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="geofs-photo-frame" data-deferredbackground="/images/photos/hight-altitude-satellite-images.jpg?v=3">
+                <h1 class="geofs-photo-title">Global satellite images</h1>
+            </div> -->
+
+            <div class="mdl-grid" style="height: 300px;">
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop" style="height: 250px;">
+                    <ul class="geofs-text">
+                        <li>Day/Nights cycles can be set manually or naturally based on location</li>
+                        <li>PAPI and Runway lights are available on major runways to help with approach.</li>
+                        <li>The location presets offers to fly directly to places of interest,</li>
+                        <li>or you can just search for any location and be instantly placed at the right spot.</li>
+                        <li>The map also provides everything required for navigation with air space, traffic, navaids and about 40,000 runways for take-off/approach.</li>
+                        <li>You can fly absolutely anywhere in the world.</li>
+                    </ul>
+                    <p style="font-size: 40px; font-family: sans-serif; color: #165a6d;">Welcome to the Counter Hijack and Sky Marshalling Simulator, an advanced training tool designed to prepare aviation security and law enforcement professionals for critical situations.<br>
+                        Our simulator provides realistic and effective training experiences that can help save lives and ensure the safety of air travelers.</p>
+                </div>
+            </div>
+            <div class="geofs-photo-frame" data-deferredbackground="/images/photos/737-cockpit.jpg?v=3">
+                <h1 class="geofs-photo-title">Accessible and realistic</h1>
+            </div>
+
+            <div class="mdl-grid">
+                <!-- <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop">
+                    <ul class="geofs-text">
+                        <li><b>Scenario Customization:</b> Instructors can customize scenarios to match specific training objectives and challenges faced by their organizations. This flexibility ensures that the training remains relevant and up-to-date.</li><li><b>Day and Night Modes:</b> Customize your training experience by choosing between day and night scenarios. This feature allows trainees to practice in different lighting conditions, enhancing their adaptability to real-life situations.</li>
+                        <li><b>Realistic Aircraft Models:</b> Our simulator features a wide range of realistic aircraft models to ensure trainees are familiar with various types of commercial and private planes, helicopters, and other aircraft. This familiarity is crucial for effective decision-making during emergencies.</li>
+                        <li><b>Dynamic Environments:</b> Trainees will face diverse and dynamic environments, including different weather conditions (e.g., rain, fog, snow), airport layouts, and geographical locations. This variability ensures a well-rounded training experience.</li>
+                        <li><b>Multiplayer Mode:</b> Collaborate with fellow trainees in multiplayer mode to simulate coordinated responses to hijack and emergency situations. Teamwork and communication are essential in real-life scenarios, and our simulator reflects this reality.</li>
+                        <li><b>Day and Night Modes:</b> Customize your training experience by choosing between day and night scenarios. This feature allows trainees to practice in different lighting conditions, enhancing their adaptability to real-life situations.</li>
+                    </ul>
+                </div> -->
+
+                <div class="mdl-cell mdl-cell--12-col">
+                    <h1>Massively multiplayer</h1>
+                </div>
+            </div>
+
+            <!-- Embedded map -->
+            <!-- <iframe data-inviewsrc="https://sih-maps-pydeck.streamlit.app/?lat=20&lon=-40&type=terrain&zoom=2&norunways=true&noauth=true" class="geofs-map-frame" style="border: 0px; width: 100%; height: 400px;" title="GeoFS Multiplayer Live Map"></iframe>
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="https://sih-maps-pydeck.streamlit.app/" target="_blank"><i class="material-icons">launch</i> Open full page map</a> -->
+            
+            <div style="overflow:hidden;resize:none;max-width:100%;width:100%;height:500px;" >
+                <div id="my-map-canvas" style="height:100%; width:100%;max-width:100%;">
+                    <iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=Airport+Apron,+R.+Mallavaram,+Andhra+Pradesh,+India&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe>
+                </div>
+                <!-- <a class="googlemaps-made" href="https://www.bootstrapskins.com/themes" id="enable-map-data">premium bootstrap themes</a> -->
+                <style>#my-map-canvas img{max-height:none;max-width:none!important;background:none!important;}</style>
+            </div>
+
+
+            <div class="mdl-grid" style="height: 150px;">
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop">
+                    <p style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif; color: #165a6d;">Join us in creating a safer future for aviation security. <br>
+                       Explore our simulator and take your training to the next level.</p>
+                </div>
+            </div>
+<!-- 
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--12-col">
+                    <h1>Instructions</h1>
+                </div>
+
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--1-offset-desktop">
+                    <p>
+                        For detailed instructions about this flight simulator, please visit the <a href="/pages/instructions.php">Instruction Page</a>
+                    </p>
+                    <h5>Here are the basic controls:</h5>
+                    <ul>
+                        <li>+ and - keys to set throttle</li>
+                        <li>0 to 9 to set throttle directly: 9 being full throttle and 0 being idle</li>
+                        <li>Mouse can be used as a yoke</li>
+                        <li>As you gain some speed, pull gently (mouse down) on the stick to take off</li>
+                        <li>Press K to fly with the keyboard. Press M to fly with the mouse</li>
+                        <li>Press C to cycle through all the camera modes</li>
+                    </ul>
+                </div>
+            </div> -->
+
+            <footer class="mdl-mega-footer">
+                <div class="mdl-mega-footer__middle-section">
+
+                    <div class="mdl-mega-footer__drop-down-section">
+                        <h1 class="mdl-mega-footer__heading">News and Community</h1>
+                        <ul class="mdl-mega-footer__link-list">
+                            <li><a href="https://twitter.com/GeoFlightSim" rel="nofollow" target="_blank">@ProjectAtlas on Twitter</a></li>
+                            <li><a href="https://www.youtube.com/c/GeoFS" rel="nofollow" target="_blank">Youtube channel</a></li>
+                            <li><a href="https://www.facebook.com/groups/geofs/" rel="nofollow" target="_blank">Facebook Atlas User Group</a></li>
+                            <li><a href="https://www.instagram.com/geoflightsim" rel="nofollow" target="_blank">Instagram</a></li>
+                            <li><a href="https://geofs.creator-spring.com/" rel="nofollow" target="_blank">Merchandising / Store</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="mdl-mega-footer__drop-down-section">
+                        <h1 class="mdl-mega-footer__heading">Info and Legal</h1>
+                        <ul class="mdl-mega-footer__link-list">
+                            <li><a href="/pages/terms.php">Terms</a></li>
+                            <li><a href="/pages/privacy.php">Privacy policy</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="mdl-mega-footer__drop-down-section">
+                        <h1 class="mdl-mega-footer__heading">Help</h1>
+                        <ul class="mdl-mega-footer__link-list">
+                            <li><a href="/pages/instructions.php#issues">Troubleshooting</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mdl-mega-footer__bottom-section">
+                    <div class="mdl-logo">Copyright &copy; 2023 Project Atlas</div>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+</body>
+
+</html>
